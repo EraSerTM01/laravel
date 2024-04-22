@@ -67,4 +67,9 @@ class UserController extends Controller
 
         return 'Hello from our controller!';
     }
+
+    public function getUser(Request $request, User $user)
+    {
+        return $user->articles()->get();
+    }
 }
