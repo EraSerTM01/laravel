@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+Route::controller(UserController::class)->group(function () {
+    Route::post('/register', 'register');
+    Route::post('/logout', 'logout');
+    Route::post('/login', 'login');
+    Route::get('/active', 'checkActive');
+    Route::get('/users/{user}', 'getUser');
+});
+
+Route::controller(ArticleController::class)->group(function () {
+    Route::get('/articles/{article}', 'show');
 });
